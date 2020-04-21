@@ -15,4 +15,34 @@ app.get("/api/nalcs/regular/matches", (req, res) => {
         });
 });
 
+app.get("/api/nalcs/regular/matches/:start/:end", (req, res) => {
+    axios
+      .get(
+        `https://api.pandascore.co/lol/matches?filter[tournament_id]=1492&range[begin_at]=${
+          req.params.start
+        },${req.params.end}&sort=begin_at&token=${token}`
+      )
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  });
+  
+  app.get("/api/match/:matchId", (req, res) => {
+    axios
+      .get(
+        `https://api.pandascore.co/lol/matches?filter[id]=${
+          req.params.matchId
+        }&token=${token}`
+      )
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  });
+  
 app.listen(port, () => console.log(`Listening on port ${port}`));
