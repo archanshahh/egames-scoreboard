@@ -4,26 +4,29 @@ import axios from "axios";
 
 class Matches extends Component {
   constructor(props) {
+    //console.log(props);
     super(props);
-    this.state = { start: props.start, end: props.end, matches: [] };
+    this.state = { matches: [] };
   }
 
   componentDidMount() {
-    // console.log(this.props.start);
-    // console.log(this.props.end);
     this.getMatches(this.props.start, this.props.end);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-    this.getMatches(nextProps.start, nextProps.end);
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.start !== prevProps.start &&
+      this.props.end !== prevProps.end
+    ) {
+      this.getMatches(this.props.start, this.props.end);
+    }
   }
 
   getMatches = (start, end) => {
     axios
-      .get(`/api/nalcs/regular/matches/:${start}/:${end}`)
+      .get(`localhost:5000/api/nalcs/regular/matches/:${start}/:${end}`)
       .then(response => {
-        // console.log(response.data);
+        console.log('hi from matches'+response.data);
         this.setState({
           matches: response.data
         });
@@ -36,15 +39,13 @@ class Matches extends Component {
   render() {
     return (
       <div>
-        <h1>matches</h1>
-        {this.state.matches.map(match => (
-          <Match
-            key={match.id}
-            matchId={match.id}
-            date={match.begin_at.slice(0, 10)}
-            status={match.status}
-          />
-        ))}
+        <div className="row d-flex justify-content-center">
+          {this.state.matches.map(match => (
+            <div className="col-11 col-sm-9 col-md-6 col-lg-4" key={match.id}>
+              <Match matchId={match.id} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

@@ -11,6 +11,27 @@ class MatchRoutes extends Component {
     };
   }
 
+  async componentDidMount() {
+    console.log('HI from macthrout')
+    await axios.get("localhost:5000/api/nalcs/regular/matches/")
+      .then(response => {
+        console.log('Hi'+response.data[0].matches);
+        const matches = response.data[0].matches;
+        console.log('Matches: '+matches);
+        // const matchTimes = [];
+        // for (const match of matches) {
+        //   matchTimes.push(match.begin_at);
+        // }
+        this.setState({
+          matches: matches
+        });
+      })
+      .catch(error => {
+        console.log('hiiiii from error')
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +42,7 @@ class MatchRoutes extends Component {
             return (
               <Matches
                 start={this.state.matches[0] && this.state.matches[0].begin_at}
-                end={this.state.matches[0] &&this.state.matches[9].begin_at}
+                end={this.state.matches[0] && this.state.matches[9].begin_at}
               />
             );
           }}
@@ -32,8 +53,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[10]&& this.state.matches[10].begin_at}
-                end={this.state.matches[19]&& this.state.matches[19].begin_at}
+                start={
+                  this.state.matches[10] && this.state.matches[10].begin_at
+                }
+                end={this.state.matches[19] && this.state.matches[19].begin_at}
               />
             );
           }}
@@ -44,8 +67,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[20].begin_at}
-                end={this.state.matches[29].begin_at}
+                start={
+                  this.state.matches[20] && this.state.matches[20].begin_at
+                }
+                end={this.state.matches[29] && this.state.matches[29].begin_at}
               />
             );
           }}
@@ -56,8 +81,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[30].begin_at}
-                end={this.state.matches[39].begin_at}
+                start={
+                  this.state.matches[30] && this.state.matches[30].begin_at
+                }
+                end={this.state.matches[39] && this.state.matches[39].begin_at}
               />
             );
           }}
@@ -68,8 +95,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[40].begin_at}
-                end={this.state.matches[49].begin_at}
+                start={
+                  this.state.matches[40] && this.state.matches[40].begin_at
+                }
+                end={this.state.matches[49] && this.state.matches[49].begin_at}
               />
             );
           }}
@@ -80,8 +109,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[50].begin_at}
-                end={this.state.matches[59].begin_at}
+                start={
+                  this.state.matches[50] && this.state.matches[50].begin_at
+                }
+                end={this.state.matches[59] && this.state.matches[59].begin_at}
               />
             );
           }}
@@ -92,8 +123,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[60].begin_at}
-                end={this.state.matches[69].begin_at}
+                start={
+                  this.state.matches[60] && this.state.matches[60].begin_at
+                }
+                end={this.state.matches[69] && this.state.matches[69].begin_at}
               />
             );
           }}
@@ -104,8 +137,10 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[70].begin_at}
-                end={this.state.matches[79].begin_at}
+                start={
+                  this.state.matches[70] && this.state.matches[70].begin_at
+                }
+                end={this.state.matches[79] && this.state.matches[79].begin_at}
               />
             );
           }}
@@ -116,8 +151,24 @@ class MatchRoutes extends Component {
           render={() => {
             return (
               <Matches
-                start={this.state.matches[80].begin_at}
-                end={this.state.matches[89].begin_at}
+                start={
+                  this.state.matches[80] && this.state.matches[80].begin_at
+                }
+                end={this.state.matches[89] && this.state.matches[89].begin_at}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path={`/nalcs/regular/week/10`}
+          render={() => {
+            return (
+              <Matches
+                start={
+                  this.state.matches[90] && this.state.matches[90].begin_at
+                }
+                end={this.state.matches[93] && this.state.matches[93].begin_at}
               />
             );
           }}

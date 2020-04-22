@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../css/MatchLinks.css";
 
 const MatchLinks = () => {
+  const weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <div>
-      <span>Week</span>
-      <Link to={`/nalcs/regular/week/1`}>1</Link>{" "}
-      <Link to={`/nalcs/regular/week/2`}>2</Link>{" "}
-      <Link to={`/nalcs/regular/week/3`}>3</Link>{" "}
-      <Link to={`/nalcs/regular/week/4`}>4</Link>{" "}
-      <Link to={`/nalcs/regular/week/5`}>5</Link>{" "}
-      <Link to={`/nalcs/regular/week/6`}>6</Link>{" "}
-      <Link to={`/nalcs/regular/week/7`}>7</Link>{" "}
-      <Link to={`/nalcs/regular/week/8`}>8</Link>{" "}
-      <Link to={`/nalcs/regular/week/9`}>9</Link>
+    <div id="menu" className="p-3 text-center shadow-sm">
+      <div className="row">
+        {weeks.map((week, index) => (
+          <div className="col" key={index}>
+            <Link to={`/nalcs/regular/week/${week}`} className="text-dark lead">
+              Week {week}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
