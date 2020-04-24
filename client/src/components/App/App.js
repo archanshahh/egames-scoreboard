@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import "./App.css";
 import NavBar from "../NavBar/NavBar";
 import LeagueRoutes from "../LeagueRoutes/LeagueRoutes.js";
 import Home from "../Home/Home.js";

@@ -4,37 +4,47 @@ import axios from "axios";
 
 class Matches extends Component {
   constructor(props) {
-    //console.log(props);
     super(props);
-    this.state = { matches: [] };
+    this.state = { matches: [], isMounted: false };
+    this.cancelTokenSource = axios.CancelToken.source();
   }
 
   componentDidMount() {
-    this.getMatches(this.props.start, this.props.end);
+    this.getMatches(this.props.date);
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.start !== prevProps.start &&
-      this.props.end !== prevProps.end
-    ) {
-      this.getMatches(this.props.start, this.props.end);
+    if (this.props.date !== prevProps.date) {
+      this.getMatches(this.props.date);
     }
   }
 
-  getMatches = (start, end) => {
-    axios
-      .get(`localhost:5000/api/nalcs/regular/matches/:${start}/:${end}`)
-      .then(response => {
-        console.log('hi from matches'+response.data);
-        this.setState({
-          matches: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
+  getMatches = async date => {
+    // use tournament id and date passed in props to find all matches on this date
+    // store matches and then pass to Match component to generate cards
+    try {
+      const matches = await axios.get(`/api/matches/${this.props.id}/${date}`, {
+        cancelToken: this.cancelTokenSource.token
       });
+      for (const match of matches.data) {
+        this.setState({
+          matches: this.state.matches.concat([match])
+        });
+      }
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        // ignore
+      } else {
+        throw err;
+      }
+    } finally {
+      this.cancelTokenSource = null;
+    }
   };
+
+  componentWillUnmount() {
+    this.cancelTokenSource && this.cancelTokenSource.cancel();
+  }
 
   render() {
     return (

@@ -1,19 +1,78 @@
 .card {
-    box-shadow: 0 7.5px 17.5px rgba(50, 50, 93, 0.1),
-      0 2.5px 7.5px rgba(0, 0, 0, 0.07);
-    transition: transform 0.44s, box-shadow 0.44s, color 0.77s 0.77s;
-    min-height: 200px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.44s, box-shadow 0.44s, color 0.77s 0.77s;
+  min-height: 200px;
+}
+
+.rc-collapse-header {
+  height: 200px !important;
+  outline: none;
+  margin-top: -180px;
+  margin-bottom: -20px;
+}
+
+.rc-collapse-item {
+  color: black;
+  margin-bottom: -20px;
+}
+
+.media:nth-of-type(2) {
+  margin-top: 1rem !important;
+}
+
+.hvr-float {
+  /* -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0); */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-float:hover,
+.hvr-float:focus,
+.hvr-float:active {
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+}
+
+.gameStatus {
+  font-size: 75%;
+}
+
+.pulse {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #dc3545;
+  box-shadow: 0 0 0 rgba(220, 53, 69, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
   }
-  
-  .rc-collapse-header {
-    background: transparent !important;
-    border: none;
-    outline: none;
-    margin-top: -18px;
-    margin-bottom: -20px;
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
   }
-  
-  .rc-collapse-item {
-    color: black;
-    margin-bottom: -20px;
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
   }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+  }
+}
