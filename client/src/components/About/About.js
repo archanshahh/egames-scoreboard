@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <div className="container text-center ">
+      <div className="container text-center">
         <h1 className="display-4 mt-5">eScoreboard</h1>
         <p className="lead">Scoreboard for various eSports games.</p>
         <h1 className="display-4">

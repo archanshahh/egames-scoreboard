@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+// import "./App.css";
 import NavBar from "../NavBar/NavBar";
 import LeagueRoutes from "../LeagueRoutes/LeagueRoutes.js";
 import Home from "../Home/Home.js";
 import LeagueNav from "../LeagueNav/LeagueNav.js";
 import OverwatchNav from "../OverwatchNav/OverwatchNav.js";
-import OverwatchHome from "../OverwatchHome/OverwatchHome.js";
+import OverwatchRoutes from "../OverwatchRoutes/OverwatchRoutes.js";
 
 class App extends Component {
   render() {
@@ -40,8 +41,8 @@ class App extends Component {
             render={props => {
               return (
                 <div>
-                  <OverwatchNav />
-                  <LeagueRoutes {...props} />
+                  <OverwatchNav {...props} />
+                  <OverwatchRoutes {...props} />
                 </div>
               );
             }}
