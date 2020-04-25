@@ -26,7 +26,7 @@ class Series extends Component {
     let game = this.props.match.path.includes("lol") ? "lol" : "ow";
     // get series by id and then store all tournaments, then generate links/routes based on tournament
     axios
-      .get(`/api/${game}/series/${this.props.seriesId}`)
+      .get(`http://localhost:5000/api/${game}/series/${this.props.seriesId}`)
       .then(series => {
         console.log(series.data[0]);
         this.setState({

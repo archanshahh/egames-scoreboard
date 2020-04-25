@@ -10,6 +10,8 @@ class Matches extends Component {
   }
 
   componentDidMount() {
+    console.log('here')
+
     this.getMatches(this.props.date);
   }
 
@@ -25,7 +27,7 @@ class Matches extends Component {
     // store matches and then pass to Match component to generate cards
     try {
       const matches = await axios.get(
-        `/api/${game}/matches/${this.props.id}/${date}`,
+        `http://localhost:5000/api/${game}/matches/${this.props.id}/${date}`,
         {
           cancelToken: this.cancelTokenSource.token
         }

@@ -58,8 +58,7 @@ class Match extends Component {
   getMatchInfo = () => {
     let game = this.props.match.path.includes("lol") ? "lol" : "ow";
     // use match id passed in props to find match by id and store information
-    axios
-      .get(`/api/${game}/match/${this.props.matchId}`)
+    axios.get(`http://localhost:5000/api/${game}/match/${this.props.matchId}`)
       .then(response => {
         const match = response.data[0];
         let status;

@@ -20,7 +20,7 @@ class DatesNav extends Component {
     // get tournament by id and then store the dates from each match in an array
     // also used to generate links/routes
     axios
-      .get(`/api/${game}/tournament/${this.props.tournamentId}`)
+      .get(`http://localhost:5000/api/${game}/tournament/${this.props.tournamentId}`)
       .then(tournament => {
         const matches = tournament.data[0].matches;
 

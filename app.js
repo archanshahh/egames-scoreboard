@@ -4,6 +4,8 @@ const axios = require("axios");
 const app = express();
 const port = process.env.PORT || 5000;
 const token = process.env.PANDASCORE_ACCESS_TOKEN;
+const cors = require('cors')
+app.use(cors())
 
 // League of Legends API calls
 // get series with given series id. this is needed to get all tournaments for a given series
