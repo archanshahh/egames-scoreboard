@@ -23,7 +23,7 @@ class DatesNav extends Component {
       .get(`http://localhost:5000/api/${game}/tournament/${this.props.tournamentId}`)
       .then(tournament => {
         const matches = tournament.data[0].matches;
-
+        console.log(matches)
         const dates = [];
         for (const match of matches) {
           if (match.begin_at !== null) {

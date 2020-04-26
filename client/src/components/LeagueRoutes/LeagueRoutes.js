@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Series from "../Series/Series.js";
 import LeagueHome from "../LeagueHome/LeagueHome.js";
 import LeagueLinks from "../LeagueLinks/LeagueLinks.js";
-
+ 
 const LeagueRoutes = ({ match }) => {
   return (
     <div>
