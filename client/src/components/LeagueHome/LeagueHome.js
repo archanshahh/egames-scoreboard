@@ -7,7 +7,7 @@ const LeagueHome = () => {
         <h1 className="display-4 mt-5">eGames</h1>
         <p className="lead">League of Legends</p>
         <img
-          src="https://png.icons8.com/color/1600/league-of-legends.png"
+          src="https://img.icons8.com/color/48/000000/league-of-legends.png"
           alt=""
           width="100"
         />

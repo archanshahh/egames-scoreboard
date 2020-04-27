@@ -29,7 +29,7 @@ class App extends Component {
                     transitionEnter={false}
                     transitionLeave={false}
                   >
-                    <Home />
+                    <Home /><br></br>
                     <Footer/>
                   </ReactCSSTransitionGroup>
                 </div>
