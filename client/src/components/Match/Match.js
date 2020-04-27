@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Collapse, { Panel } from "rc-collapse";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Ionicon from "react-ionicons/lib/LogoNodejs";
 import moment from "moment";
 import axios from "axios";
@@ -30,8 +31,10 @@ class Match extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: this.props.loading,
       matchId: "",
       date: "",
+      longDate: "",
       status: "",
       numOfGames: "",
       matchName: "",
@@ -57,8 +60,9 @@ class Match extends Component {
 
   getMatchInfo = () => {
     let game = this.props.match.path.includes("lol") ? "lol" : "ow";
-    // use match id passed in props to find match by id and store information
-    axios.get(`http://localhost:5000/api/${game}/match/${this.props.matchId}`)
+    // using match id passed in props to find match by id
+    axios
+      .get(`http://localhost:5000/api/${game}/match/${this.props.matchId}`)
       .then(response => {
         const match = response.data[0];
         let status;
@@ -66,13 +70,15 @@ class Match extends Component {
           status = "Final";
         } else if (match.status === "not_started") {
           status = "Not Started";
+        } else {
+          status = "Live";
         }
-        // formats dates in a clean readable format
+        // simple date format
         const date = moment(match.begin_at.slice(0, 10)).format("ddd, MMM D");
         const date2 = moment(match.begin_at.slice(0, 10)).format(
           "MMMM D, YYYY"
         );
-        // simply removes all dashes in match names for cleaner output
+        //removing dashes
         const matchName = match.name.includes("-")
           ? match.name.replace(/-/g, " ")
           : match.name;
@@ -80,7 +86,7 @@ class Match extends Component {
         const games = match.games.sort((a, b) => {
           return a.position - b.position;
         });
-        // loop through games and teams to find winner of each game
+        // determining winner
         for (const game of games) {
           if (game.winner.id === null && game.begin_at !== null) {
             this.setState({
@@ -132,12 +138,17 @@ class Match extends Component {
           this.setTeams(match);
         }
       })
+      .then(response => {
+        this.setState({
+          loading: false
+        });
+      })
       .catch(error => {
         console.log(error);
       });
   };
 
-  // set dummy data for when the opponent hasn't been determined yet
+  // set dummy data
   setDummyData = id => {
     this.setState({
       teams: this.state.teams.concat([
@@ -153,8 +164,7 @@ class Match extends Component {
     });
   };
 
-  // loop through teams and scores to see which scores belond to which teams
-  // also checks who the winner is
+  // loop through teams and scores to see which scores belong to which teams
   setTeams = match => {
     for (const team of match.opponents) {
       for (const result of match.results) {
@@ -182,84 +192,105 @@ class Match extends Component {
       }
     }
   };
-
+  //displaying matches in card view
   render() {
     return (
-      <div className="card border-0 mt-4 hvr-float">
-        <span className="ml-3 mt-2">
-          <span className="text-muted">{this.state.date}</span>
-          <span className="mr-3 mt-0 float-right">
-            {this.state.status === "Final" ||
-            this.state.status === "Not Started" ? (
-              this.state.status
-            ) : (
-              <span className="text-danger">
-                <span className="pulse mr-1" /> Live
-              </span>
-            )}
-          </span>
-        </span>
+      <div>
+        {this.state.loading ? (
+          ""
+        ) : (
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionAppear={true}
+              transitionAppearTimeout={600}
+              transitionEnter={false}
+              transitionLeave={false}
+            >
+              <div className="card border-0 mt-4 hvr-float">
+                <span className="ml-3 mt-2">
+                  <span className="text-muted">{this.state.date} </span>
 
-        <div className="card-body">
-          {this.state.teams.map(team => (
-            <div key={team.id} className="media">
-              <img
-                className="mr-3"
-                src={
-                  team.image
-                    ? team.image
-                    : "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/lolesports_feapp/en_US/82d3718bcef9317f420e4518a7cb7ade57ed9116/assets/img/tbd.png"
-                }
-                alt=""
-                width="50px"
-              />
-              <div className="media-body">
-                <h5>
-                  {team.name}
-                  <span className="float-right mt-2">{team.score}</span>
-                  <div>
-                    {team.status ? (
-                      <span className="gameStatus text-muted">
-                        {team.status}
-                      </span>
-                    ) : (
-                      <span className="gameStatus text-muted invisible">
-                        TBD
-                      </span>
-                    )}
-                  </div>
-                </h5>
-              </div>
-            </div>
-          ))}
-          <Collapse
-            accordion={this.state.accordion}
-            onChange={this.onChange}
-            activeKey={this.state.activeKey}
-            expandIcon={expandIcon}
-            className="align-self-center bg-transparent border-0"
-          >
-            <Panel key={this.state.matchId}>
-              <div className="text-dark text-center">
-                <h5 className="card-title">
-                  {this.state.league} {this.state.tournamentName}
-                </h5>
-                <div>{this.state.matchName}</div>
-                <div>{this.state.longDate}</div>
-                <div>Best of {this.state.numOfGames} series</div>
-                {this.state.patch && <div>Patch: {this.state.patch}</div>}
-                <div className="mt-3">
-                  {this.state.games.map(game => (
-                    <div key={game.id}>
-                      Game {game.position}:{" "}
-                      {game.winner ? `${game.winner} wins` : `In Progress`}
-                    </div>
-                  ))}
+                  <span
+                    className={`mr-3 mt-0 float-right ${this.state.status ===
+                      "Live" && "text-danger"}`}
+                  >
+                    {this.state.status === "Live" && (
+                      <span className="pulse mr-1" />
+                    )}{" "}
+                    {this.state.status}
+                  </span>
+                </span>
+
+                <div className="card-body">
+                  <ReactCSSTransitionGroup
+                    transitionName="matches"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                  >
+                    {this.state.teams.map(team => (
+                      <div key={team.id} className="media">
+                        <img
+                          className="mr-3"
+                          src={team.image}
+                          alt=""
+                          width="50px"
+                        />
+                        <div className="media-body">
+                          <h5>
+                            {team.name}
+                            <span className="float-right mt-1 badge badge-light p-2">
+                              {team.score}
+                            </span>
+                            <div>
+                              {team.status ? (
+                                <span className="gameStatus text-muted">
+                                  {team.status}
+                                </span>
+                              ) : (
+                                  <span className="gameStatus text-muted invisible">
+                                    TBD
+                              </span>
+                                )}
+                            </div>
+                          </h5>
+                        </div>
+                      </div>
+                    ))}
+                  </ReactCSSTransitionGroup>
+                  {/*Extra panel for additional info on match */}
+                  <Collapse
+                    accordion={this.state.accordion}
+                    onChange={this.onChange}
+                    activeKey={this.state.activeKey}
+                    expandIcon={expandIcon}
+                    className="align-self-center bg-transparent border-0"
+                  >
+                    <Panel key={this.state.matchId}>
+                      <div className="text-dark text-center">
+                        <h5 className="card-title">
+                          {this.state.league} {this.state.tournamentName}
+                        </h5>
+                        <div>{this.state.matchName}</div>
+                        <div>{this.state.longDate}</div>
+                        <div>Best of {this.state.numOfGames} series</div>
+                        {this.state.patch && <div>Patch: {this.state.patch}</div>}
+                        <div className="mt-3">
+                          {this.state.games.map(game => (
+                            <div key={game.id}>
+                              Game {game.position}:{" "}
+                              {game.winner
+                                ? `${game.winner} wins`
+                                : `In Progress`}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Panel>
+                  </Collapse>
                 </div>
               </div>
-            </Panel>
-          </Collapse>
-        </div>
+            </ReactCSSTransitionGroup>
+          )}
       </div>
     );
   }

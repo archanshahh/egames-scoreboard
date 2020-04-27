@@ -4,7 +4,7 @@ const LeagueHome = () => {
   return (
     <div>
       <div className="container text-center ">
-        <h1 className="display-4 mt-5">eScoreboard</h1>
+        <h1 className="display-4 mt-5">eGames</h1>
         <p className="lead">League of Legends</p>
         <img
           src="https://png.icons8.com/color/1600/league-of-legends.png"

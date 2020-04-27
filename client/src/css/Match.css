@@ -3,6 +3,9 @@
   transition: transform 0.44s, box-shadow 0.44s, color 0.77s 0.77s;
   min-height: 200px;
 }
+.badge-light {
+  background: #f2f2f3 !important;
+}
 
 .rc-collapse-header {
   height: 200px !important;
@@ -21,8 +24,8 @@
 }
 
 .hvr-float {
-  /* -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0); */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
@@ -48,6 +51,8 @@
   border-radius: 50%;
   background: #dc3545;
   box-shadow: 0 0 0 rgba(220, 53, 69, 0.4);
+  -webkit-animation: pulse 2s infinite;
+  -moz-animation: pulse 2s infinite;
   animation: pulse 2s infinite;
 }
 
@@ -75,4 +80,27 @@
     -moz-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
     box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
   }
+}
+
+.matches-enter {
+  opacity: 0.01;
+}
+
+.matches-enter.matches-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease-in;
+  -moz-transition: opacity 500ms ease-in;
+
+  transition: opacity 500ms ease-in;
+}
+
+.matches-leave {
+  opacity: 1;
+}
+
+.matches-leave.matches-leave-active {
+  opacity: 0.01;
+  -webkit-transition: opacity 300ms ease-in;
+  -moz-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
 }

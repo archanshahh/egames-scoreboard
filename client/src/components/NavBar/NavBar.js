@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import HamburgerMenu from "react-hamburger-menu";
 import "../../css/NavBar.css";
 import {
   Collapse,
@@ -14,13 +15,13 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      open: false
     };
   }
 
-  toggle = () => {
+  handleClick = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      open: !this.state.open
     });
   };
 
@@ -30,10 +31,24 @@ class NavBar extends Component {
         <Navbar dark expand="md">
           <div className="container">
             <Link to="/" className="navbar-brand">
-              eScoreboard
+              eGames
             </Link>
-            <NavbarToggler onClick={() => this.toggle()} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+            <NavbarToggler onClick={() => this.handleClick()}>
+              <HamburgerMenu
+                isOpen={this.state.open}
+                menuClicked={() => this.handleClick()}
+                width={27}
+                height={17}
+                strokeWidth={1}
+                rotate={0}
+                color="white"
+                borderRadius={0}
+                animationDuration={0.3}
+                className="hamburgerMenu"
+              />
+            </NavbarToggler>
+
+            <Collapse isOpen={this.state.open} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <Link to="/lol" className="nav-link">
@@ -45,18 +60,18 @@ class NavBar extends Component {
                     Overwatch
                   </Link>
                 </NavItem>
-                <NavItem>
-                  <Link to="/dota" className="nav-link">
+                <NavItem className="pr-4">
+                  <Link to="/" className="nav-link">
                     Dota
                   </Link>
                 </NavItem>
-                <NavItem>
-                  <Link to="/about" className="nav-link">
-                    about
-                  </Link>
+                <NavItem className="pl-4 verticalLine d-none d-md-block ">
+                  <NavLink href="https://github.com/archanshahh/egames-scoreboard">
+                    source
+                  </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavItem className="d-sm-block d-md-none ">
+                  <NavLink href="https://github.com/archanshahh/egames-scoreboard">
                     source
                   </NavLink>
                 </NavItem>

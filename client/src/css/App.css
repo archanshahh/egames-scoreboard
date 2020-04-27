@@ -1,0 +1,10 @@
+.example-appear {
+  opacity: 0;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}

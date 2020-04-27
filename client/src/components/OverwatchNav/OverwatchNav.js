@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HamburgerMenu from "react-hamburger-menu";
 import { Link } from "react-router-dom";
 import {
   Collapse,
@@ -13,13 +14,13 @@ class OwerwatcNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      open: false
     };
   }
 
-  toggle = () => {
+  handleClick = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      open: !this.state.open
     });
   };
 
@@ -29,36 +30,71 @@ class OwerwatcNav extends Component {
         <Navbar dark expand="md">
           <div className="container">
             <Link to="/" className="navbar-brand">
-              eScoreboard | Overwatch
+              eGames
             </Link>
-            <NavbarToggler onClick={() => this.toggle()} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+            <NavbarToggler onClick={() => this.handleClick()}>
+              <HamburgerMenu
+                isOpen={this.state.open}
+                menuClicked={() => this.handleClick()}
+                width={27}
+                height={17}
+                strokeWidth={1}
+                rotate={0}
+                color="white"
+                borderRadius={0}
+                animationDuration={0.3}
+                className="hamburgerMenu"
+              />
+            </NavbarToggler>
+            <Collapse isOpen={this.state.open} navbar>
               <Nav className="mr-auto" navbar>
                 <NavItem>
-                  <Link to={`${this.props.match.url}`} className="nav-link">
-                    Home
+                  <Link
+                    to={`${this.props.match.url}`}
+                    className={`nav-link ${
+                      window.location.pathname === "/ow" ? "active" : ""
+                    }`}
+                  >
+                    Overwatch
                   </Link>
                 </NavItem>
               </Nav>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Link to={`${this.props.match.url}/owl`} className="nav-link">
+                  <Link
+                    to={`${this.props.match.url}/owl`}
+                    className={`nav-link ${
+                      window.location.pathname.includes(
+                        `${this.props.match.url}/owl`
+                      )
+                        ? "active"
+                        : ""
+                    }`}
+                  >
                     OW League
                   </Link>
                 </NavItem>
-                <NavItem>
-                  <Link to={`${this.props.match.url}/wc`} className="nav-link">
+                <NavItem className="pr-4">
+                  <Link
+                    to={`${this.props.match.url}/wc`}
+                    className={`nav-link ${
+                      window.location.pathname.includes(
+                        `${this.props.match.url}/wc`
+                      )
+                        ? "active"
+                        : ""
+                    }`}
+                  >
                     World Cup
                   </Link>
                 </NavItem>
-
-                <NavItem>
-                  <Link to="/about" className="nav-link">
-                    about
-                  </Link>
+                <NavItem className="pl-4 verticalLine d-none d-md-block ">
+                  <NavLink href="https://github.com/archanshahh/egames-scoreboard">
+                    source
+                  </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavItem className="d-sm-block d-md-none ">
+                  <NavLink href="https://github.com/archanshahh/egames-scoreboard">
                     source
                   </NavLink>
                 </NavItem>

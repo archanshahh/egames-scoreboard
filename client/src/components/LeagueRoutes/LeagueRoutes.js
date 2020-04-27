@@ -3,22 +3,27 @@ import { Route } from "react-router-dom";
 import Series from "../Series/Series.js";
 import LeagueHome from "../LeagueHome/LeagueHome.js";
 import LeagueLinks from "../LeagueLinks/LeagueLinks.js";
- 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 const LeagueRoutes = ({ match }) => {
   return (
-    <div>
+    <ReactCSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={600}
+      transitionEnter={false}
+      transitionLeave={false}
+    >
       <Route
         exact
         path={match.path}
         render={props => {
-          return <LeagueHome {...props} />;
-        }}
-      />
-      <Route
-        exact
-        path={match.path}
-        render={props => {
-          return <LeagueLinks {...props} />;
+          return (
+            <div>
+              <LeagueHome {...props} />
+              <LeagueLinks {...props} />
+            </div>
+          );
         }}
       />
 
@@ -52,7 +57,7 @@ const LeagueRoutes = ({ match }) => {
           return <Series seriesId="1520" {...props} />;
         }}
       />
-    </div>
+    </ReactCSSTransitionGroup>
   );
 };
 

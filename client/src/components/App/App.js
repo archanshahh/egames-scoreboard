@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-// import "./App.css";
+import "../../css/App.css";
 import NavBar from "../NavBar/NavBar";
-import LeagueRoutes from "../LeagueRoutes/LeagueRoutes.js";
 import Home from "../Home/Home.js";
 import LeagueNav from "../LeagueNav/LeagueNav.js";
+import LeagueRoutes from "../LeagueRoutes/LeagueRoutes.js";
 import OverwatchNav from "../OverwatchNav/OverwatchNav.js";
 import OverwatchRoutes from "../OverwatchRoutes/OverwatchRoutes.js";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import Footer from "../Footer/Footer";
 
 class App extends Component {
   render() {
@@ -20,7 +22,16 @@ class App extends Component {
               return (
                 <div>
                   <NavBar />
-                  <Home />
+                  <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionAppear={true}
+                    transitionAppearTimeout={600}
+                    transitionEnter={false}
+                    transitionLeave={false}
+                  >
+                    <Home />
+                    <Footer/>
+                  </ReactCSSTransitionGroup>
                 </div>
               );
             }}
@@ -32,6 +43,7 @@ class App extends Component {
                 <div>
                   <LeagueNav {...props} />
                   <LeagueRoutes {...props} />
+                  <Footer/>
                 </div>
               );
             }}
@@ -43,6 +55,7 @@ class App extends Component {
                 <div>
                   <OverwatchNav {...props} />
                   <OverwatchRoutes {...props} />
+                  <Footer/>
                 </div>
               );
             }}
