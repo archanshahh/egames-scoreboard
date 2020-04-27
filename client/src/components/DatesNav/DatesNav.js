@@ -22,7 +22,7 @@ class DatesNav extends Component {
     //getting dates to display on Dates navigation bar
     try {
       const tournament = await axios.get(
-        `http://localhost:5000/api/${game}/tournament/${this.props.tournamentId}`
+        `/api/${game}/tournament/${this.props.tournamentId}`
       );
       const matches = tournament.data[0].matches;
       const dates = [];

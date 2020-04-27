@@ -30,7 +30,7 @@ class Series extends Component {
     let game = this.props.match.path.includes("lol") ? "lol" : "ow";
     // get series by id and then store all tournaments
     axios
-      .get(`http://localhost:5000/api/${game}/series/${this.props.seriesId}`)
+      .get(`/api/${game}/series/${this.props.seriesId}`)
       .then(response => {
         const series = response.data[0];
         this.setState({

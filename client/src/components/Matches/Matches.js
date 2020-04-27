@@ -22,7 +22,7 @@ class Matches extends Component {
     let game = this.props.match.path.includes("lol") ? "lol" : "ow";
     // getting matches by date
     axios
-      .get(`http://localhost:5000/api/${game}/matches/${this.props.id}/${date}`)
+      .get(`/api/${game}/matches/${this.props.id}/${date}`)
       .then(matches => {
         for (const match of matches.data) {
           // store matches to generate cards
