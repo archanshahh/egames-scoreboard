@@ -4,8 +4,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
-import 'rc-collapse/assets/index.css';
-
 
 ReactDOM.render(
   <React.StrictMode>

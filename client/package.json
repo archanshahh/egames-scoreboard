@@ -9,6 +9,7 @@
     "aphrodite": "^2.4.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "rc-collapse": "^1.11.8",
     "react": "^16.13.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-animations": "^1.0.0",
@@ -20,8 +21,7 @@
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "react-spinners": "^0.8.1",
-    "slick-carousel": "^1.8.1"
+    "react-spinners": "^0.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
