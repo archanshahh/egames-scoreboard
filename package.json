@@ -21,7 +21,7 @@
     "moment": "^2.24.0"
   },
   "engines": {
-    "node": "13.x",
+    "node": "12.x",
     "npm": "6.x"
   }
 }
