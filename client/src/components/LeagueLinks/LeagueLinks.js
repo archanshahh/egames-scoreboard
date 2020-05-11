@@ -8,18 +8,18 @@ const LeagueLinks = ({ match }) => {
       <div className="row d-flex justify-content-center mt-5">
         <div className="col-6 col-md-4 col-lg-2">
           <Link
-            to={`${match.url}/na`}
+            to={`${match.url}/vcs`}
             className="btn btn-lg btn-block btn-outline-dark mt-4"
           >
-            <span className="text-uppercase">NA</span>
+            <span className="text-uppercase">VCS</span>
           </Link>
         </div>
         <div className="col-6 col-md-4 col-lg-2">
           <Link
-            to={`${match.url}/eu`}
+            to={`${match.url}/ldl`}
             className="btn btn-lg btn-block btn-outline-dark mt-4"
           >
-            <span className="text-uppercase">EU</span>
+            <span className="text-uppercase">LDL</span>
           </Link>
         </div>
         <div className="col-6 col-md-4 col-lg-2">

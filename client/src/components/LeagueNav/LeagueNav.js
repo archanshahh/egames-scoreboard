@@ -62,30 +62,30 @@ class LeagueNav extends Component {
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <Link
-                    to={`${this.props.match.url}/na`}
+                    to={`${this.props.match.url}/vcs`}
                     className={`nav-link ${
                       window.location.pathname.includes(
-                        `${this.props.match.url}/na`
+                        `${this.props.match.url}/vcs`
                       )
                         ? "active"
                         : ""
                     }`}
                   >
-                    NA
+                    VCS
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link
-                    to={`${this.props.match.url}/eu`}
+                    to={`${this.props.match.url}/ldl`}
                     className={`nav-link ${
                       window.location.pathname.includes(
-                        `${this.props.match.url}/eu`
+                        `${this.props.match.url}/ldl`
                       )
                         ? "active"
                         : ""
                     }`}
                   >
-                    EU
+                    LDL
                   </Link>
                 </NavItem>
                 <NavItem>

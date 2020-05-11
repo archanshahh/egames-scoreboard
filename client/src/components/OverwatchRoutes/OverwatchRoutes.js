@@ -29,13 +29,13 @@ const OverwatchRoutes = ({ match }) => {
       <Route
         path={`${match.path}/owl`}
         render={props => {
-          return <Series seriesId="1500" {...props} />;
+          return <Series seriesId="1979" {...props} />;
         }}
       />
       <Route
         path={`${match.path}/wc`}
         render={props => {
-          return <Series seriesId="1537" {...props} />;
+          return <Series seriesId="1893" {...props} />;
         }}
       />
     </ReactCSSTransitionGroup>

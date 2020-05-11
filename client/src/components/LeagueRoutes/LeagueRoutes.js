@@ -28,33 +28,33 @@ const LeagueRoutes = ({ match }) => {
       />
 
       <Route
-        path={`${match.path}/na`}
+        path={`${match.path}/vcs`}
         render={props => {
-          return <Series seriesId="1482" {...props} />;
+          return <Series seriesId="2665" {...props} />;
         }}
       />
       <Route
-        path={`${match.path}/eu`}
+        path={`${match.path}/ldl`}
         render={props => {
-          return <Series seriesId="1509" {...props} />;
+          return <Series seriesId="2602" {...props} />;
         }}
       />
       <Route
         path={`${match.path}/lck`}
         render={props => {
-          return <Series seriesId="1481" {...props} />;
+          return <Series seriesId="2657" {...props} />;
         }}
       />
       <Route
         path={`${match.path}/lpl`}
         render={props => {
-          return <Series seriesId="1513" {...props} />;
+          return <Series seriesId="2365" {...props} />;
         }}
       />
       <Route
         path={`${match.path}/lms`}
         render={props => {
-          return <Series seriesId="1520" {...props} />;
+          return <Series seriesId="1783" {...props} />;
         }}
       />
     </ReactCSSTransitionGroup>
