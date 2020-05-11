@@ -1,3 +1,5 @@
+<p align="center"><img height="80" width="80" src="https://github.com/archanshahh/egames-scoreboard/blob/master/screenshots/icon.png"/></p>
+
 Scoreboard for eGames
 ======
 - Responsive website displaying latest score of eSports being played around the world
