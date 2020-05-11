@@ -60,11 +60,6 @@ class NavBar extends Component {
                     Overwatch
                   </Link>
                 </NavItem>
-                <NavItem className="pr-4">
-                  <Link to="/" className="nav-link">
-                    Dota
-                  </Link>
-                </NavItem>
                 <NavItem className="pl-4 verticalLine d-none d-md-block ">
                   <NavLink href="https://github.com/archanshahh/egames-scoreboard">
                     source
