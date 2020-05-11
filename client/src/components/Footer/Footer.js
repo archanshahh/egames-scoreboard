@@ -7,7 +7,7 @@ const Footer = () => {
       <footer className="footer">
         <div className="container text-center">
           <a
-            href="https://github.com/himanshup/escoreboard"
+            href="https://github.com/archanshahh/egames-scoreboard"
             className="text-dark hvr-grow"
           >
             <i className="icon ion-logo-github" />
