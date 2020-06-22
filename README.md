@@ -4,9 +4,8 @@ Scoreboard for eGames
 ======
 - Responsive website displaying latest score of eSports being played around the world
 - Technologies used: React, Node.js, Express, React Bootstrap
-- Hosted on Amazon web services (AWS)
-
-> For demo, Go here: https://tinyurl.com/yc9khnsj
+- Hosted on Amazon web services (https://tinyurl.com/yc9khnsj)
+- Hosted on Google Cloud Platfrom (http://35.192.41.33/)
 
 Features
 ===
