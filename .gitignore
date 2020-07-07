@@ -20,3 +20,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+my-egames-key.pem
+my-egames-key.ppk
