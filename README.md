@@ -1,8 +1,11 @@
+<p align="center"><img height="80" width="80" src="https://github.com/archanshahh/egames-scoreboard/blob/master/screenshots/icon.png"/></p>
+
 Scoreboard for eGames
 ======
 - Responsive website displaying latest score of eSports being played around the world
 - Technologies used: React, Node.js, Express, React Bootstrap
-> For demo, Go here: http://e-games.herokuapp.com
+- Hosted on Amazon web services (https://tinyurl.com/yc9khnsj)
+- Hosted on Google Cloud Platfrom (http://35.192.41.33/)
 
 Features
 ===
